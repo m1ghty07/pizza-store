@@ -162,6 +162,9 @@ body {
             display: none;
           }
         }
+        &--disabled {
+          opacity: 0.2;
+        }
       }
 
       b {

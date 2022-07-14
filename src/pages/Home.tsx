@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import Categories from '../components/Categories';
 import { Pagination } from '../components/Pagination';
@@ -25,9 +25,9 @@ export const Home: React.FC = () => {
   const isMounted = useRef(false);
   const dispatch = useAppDispatch();
 
-  const onCategoryChange = (id: number) => {
+  const onCategoryChange = useCallback((id: number) => {
     dispatch(setCategory(id));
-  };
+  }, []);
 
   const onChangePage = (page: number) => {
     dispatch(setCurrentPage(page));
