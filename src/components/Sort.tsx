@@ -1,22 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSort, SortEnum, sortSelector } from '../redux/slices/filterSlice';
+import React, { memo, useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setSort } from '../redux/filter/slice';
+import { Sort as SortType, SortEnum } from '../redux/filter/types';
 
 type SortItem = {
   name: string;
   sort: SortEnum;
 };
 
+type SortPopupProps = {
+  value: SortType;
+};
+
 export const sortList: SortItem[] = [
-  { name: 'популярности', sort: SortEnum.RATING },
-  { name: 'цене', sort: SortEnum.PRICE },
-  { name: 'алфавиту', sort: SortEnum.TITLE },
+  { name: 'Rating', sort: SortEnum.RATING },
+  { name: 'Price', sort: SortEnum.PRICE },
+  { name: 'A-Z', sort: SortEnum.TITLE },
 ];
 
-const SortPopup: React.FC = () => {
+export const Sort: React.FC<SortPopupProps> = memo(({ value }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
-  const sort = useSelector(sortSelector);
   const sortRef = useRef<HTMLDivElement>(null);
 
   const toggleSort = (obj: SortItem) => {
@@ -51,8 +55,8 @@ const SortPopup: React.FC = () => {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
-        <span onClick={() => setIsOpen(!isOpen)}>{sort.name}</span>
+        <b>Sort by:</b>
+        <span onClick={() => setIsOpen(!isOpen)}>{value.name}</span>
       </div>
       {isOpen && (
         <div className="sort__popup">
@@ -61,7 +65,7 @@ const SortPopup: React.FC = () => {
               <li
                 key={item.sort}
                 onClick={() => toggleSort(item)}
-                className={sort.sort === item.sort ? 'active' : ''}>
+                className={value.sort === item.sort ? 'active' : ''}>
                 {item.name}
               </li>
             ))}
@@ -70,6 +74,4 @@ const SortPopup: React.FC = () => {
       )}
     </div>
   );
-};
-
-export default SortPopup;
+});

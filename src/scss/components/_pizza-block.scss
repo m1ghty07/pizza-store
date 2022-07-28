@@ -6,11 +6,14 @@
   margin-bottom: 65px;
 
   &:not(:nth-of-type(4n)) {
-    margin-right: 35px;
+    margin-right: 0px;
   }
 
   &__image {
     width: 260px;
+    @media (max-width: 420px) {
+      width: 240px;
+    }
   }
 
   &__title {

@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .root {
   li {
     display: inline-block;
@@ -7,15 +9,20 @@
       width: 45px;
       line-height: 42px;
       height: 45px;
-      border: 1px solid #fe5f1e;
+      border: 1px solid $orange;
       border-radius: 30px;
       margin-right: 10px;
       cursor: pointer;
       display: inline-block;
-      color: #fe5f1e;
+      color: $orange;
+
+      @media (max-width: 420px) {
+        width: 40px;
+        height: 40px;
+      }
 
       &:hover {
-        background-color: #fe5f1e;
+        background-color: $orange;
         color: #fff;
       }
     }
@@ -24,9 +31,10 @@
   :global {
     .selected {
       a {
-        background-color: #fe5f1e;
+        background-color: $orange;
         color: #fff;
       }
     }
   }
+  text-align: center;
 }

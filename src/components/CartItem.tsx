@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addItem, CartItemType, minusItem, removeItem } from '../redux/slices/cartSlice';
+import { addItem, minusItem, removeItem } from '../redux/cart/slice';
+import { CartItemType } from '../redux/cart/types';
 
 type CartItemProps = {
   title: string;
@@ -13,7 +14,15 @@ type CartItemProps = {
   price: number;
 };
 
-const CartItem: React.FC<CartItemProps> = ({ title, id, imageUrl, type, size, count, price }) => {
+export const CartItem: React.FC<CartItemProps> = ({
+  title,
+  id,
+  imageUrl,
+  type,
+  size,
+  count,
+  price,
+}) => {
   const dispatch = useDispatch();
 
   const onClickPlus = () => {
@@ -40,7 +49,7 @@ const CartItem: React.FC<CartItemProps> = ({ title, id, imageUrl, type, size, co
       <div className="cart__item-info">
         <h3>{title}</h3>
         <p>
-          {type}, {size} см.
+          {type}, {size} cm.
         </p>
       </div>
       <div className="cart__item-count">
@@ -84,7 +93,7 @@ const CartItem: React.FC<CartItemProps> = ({ title, id, imageUrl, type, size, co
         </button>
       </div>
       <div className="cart__item-price">
-        <b>{price * count} ₽</b>
+        <b>{price * count} $</b>
       </div>
       <div className="cart__item-remove">
         <div onClick={onClickRemove} className="button button--outline button--circle">
@@ -106,5 +115,3 @@ const CartItem: React.FC<CartItemProps> = ({ title, id, imageUrl, type, size, co
     </div>
   );
 };
-
-export default CartItem;

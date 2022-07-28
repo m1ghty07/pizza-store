@@ -6,8 +6,8 @@ export const NotFoundBlock = () => {
   return (
     <div className={styles.root}>
       <span>😕</span>
-      <h1>Страница не найдена</h1>
-      <p>Вернитесь на главную страницу и попробуйте снова</p>
+      <h1>Nothing found...</h1>
+      <p>Try it again</p>
     </div>
   );
 };

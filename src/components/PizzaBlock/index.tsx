@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addItem, cartItemByIdSelector, CartItemType } from '../../redux/slices/cartSlice';
+import { cartItemByIdSelector } from '../../redux/cart/selectors';
+import { addItem } from '../../redux/cart/slice';
+import { CartItemType } from '../../redux/cart/types';
 
 type PizzaBlockProps = {
   id: string;
@@ -12,7 +14,14 @@ type PizzaBlockProps = {
   price: number;
 };
 
-const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, imageUrl, types, title, sizes, price }) => {
+export const PizzaBlock: React.FC<PizzaBlockProps> = ({
+  id,
+  imageUrl,
+  types,
+  title,
+  sizes,
+  price,
+}) => {
   const [activeSize, setActiveSize] = useState(0);
   const [activeType, setActiveType] = useState(0);
 
@@ -22,7 +31,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, imageUrl, types, title, siz
 
   const dispatch = useDispatch();
 
-  const pizzasTypes = ['тонкое', 'обычное'];
+  const pizzasTypes = ['thin', 'ordinary'];
 
   const onItemAdd = () => {
     const item: CartItemType = {
@@ -60,13 +69,13 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, imageUrl, types, title, siz
               onClick={() => setActiveSize(i)}
               className={activeSize === i ? 'active' : ''}
               key={size}>
-              {size} см.
+              {size} cm.
             </li>
           ))}
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от {price} ₽</div>
+        <div className="pizza-block__price">Price: {price} $</div>
         <button onClick={onItemAdd} className="button button--outline button--add">
           <svg
             width="12"
@@ -79,12 +88,10 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, imageUrl, types, title, siz
               fill="white"
             />
           </svg>
-          <span>Добавить</span>
+          <span>order online</span>
           {addedCount > 0 && <i>{addedCount}</i>}
         </button>
       </div>
     </div>
   );
 };
-
-export default PizzaBlock;

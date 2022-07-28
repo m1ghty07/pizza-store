@@ -1,15 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import CartEmpty from '../components/CartEmpty';
-import CartItem from '../components/CartItem';
-import { cartSelector, clearItems } from '../redux/slices/cartSlice';
+import { CartItem, CartEmpty } from '../components';
+import { cartSelector } from '../redux/cart/selectors';
+import { clearItems } from '../redux/cart/slice';
 
-export const Cart = () => {
+const Cart = () => {
   const dispatch = useDispatch();
 
   const onClickClear = () => {
-    if (window.confirm('Clear your order?')) {
+    if (window.confirm('Are you sure want to clear your order?')) {
       dispatch(clearItems());
     }
   };
@@ -51,7 +51,7 @@ export const Cart = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"></path>
             </svg>
-            Корзина
+            Cart
           </h2>
           <div onClick={onClickClear} className="cart__clear">
             <svg
@@ -86,7 +86,7 @@ export const Cart = () => {
                 strokeLinejoin="round"></path>
             </svg>
 
-            <span>Очистить корзину</span>
+            <span>Clear order</span>
           </div>
         </div>
         <div className="content__cart">
@@ -98,11 +98,11 @@ export const Cart = () => {
           <div className="cart__bottom-details">
             <span>
               {' '}
-              Всего пицц: <b>{totalCount} шт.</b>{' '}
+              Total: <b>{totalCount} </b>{' '}
             </span>
             <span>
               {' '}
-              Сумма заказа: <b>{totalPrice} ₽</b>{' '}
+              Price: <b>{totalPrice} $</b>{' '}
             </span>
           </div>
           <div className="cart__bottom-buttons">
@@ -121,10 +121,10 @@ export const Cart = () => {
                   strokeLinejoin="round"></path>
               </svg>
 
-              <span>Вернуться назад</span>
+              <span>Go back</span>
             </Link>
             <div className="button pay-btn">
-              <span>Оплатить сейчас</span>
+              <span>Pay now</span>
             </div>
           </div>
         </div>
@@ -132,3 +132,5 @@ export const Cart = () => {
     </div>
   );
 };
+
+export default Cart;

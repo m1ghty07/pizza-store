@@ -30,4 +30,9 @@
       color: #7b7b7b;
     }
   }
+  &__cart {
+    @media (max-width: 420px) {
+      margin-top: 10px;
+    }
+  }
 }

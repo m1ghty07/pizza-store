@@ -1,7 +1,9 @@
 import debounce from 'lodash.debounce';
 import { useCallback } from 'react';
 
-const useDebounce = (fn, ms) => {
+type CBType = (...args: any[]) => any;
+
+const useDebounce = (fn: CBType, ms: number) => {
   return useCallback(debounce(fn, ms), []);
 };
 
