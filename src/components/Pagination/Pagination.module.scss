@@ -9,12 +9,12 @@
       width: 45px;
       line-height: 42px;
       height: 45px;
-      border: 1px solid $orange;
+      border: 1px solid $main;
       border-radius: 30px;
       margin-right: 10px;
       cursor: pointer;
       display: inline-block;
-      color: $orange;
+      color: $main;
 
       @media (max-width: 420px) {
         width: 40px;
@@ -22,7 +22,7 @@
       }
 
       &:hover {
-        background-color: $orange;
+        background-color: $main;
         color: #fff;
       }
     }
@@ -31,7 +31,7 @@
   :global {
     .selected {
       a {
-        background-color: $orange;
+        background-color: $main;
         color: #fff;
       }
     }

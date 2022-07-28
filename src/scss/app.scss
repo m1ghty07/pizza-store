@@ -10,7 +10,7 @@ body {
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $orange;
+    background-color: $main;
     border-radius: 5px;
   }
   
@@ -265,7 +265,7 @@ body {
 
         &:last-of-type {
           b {
-            color: $orange;
+            color: $main;
           }
         }
       }
@@ -399,7 +399,7 @@ body {
     font-weight: bold;
   }
   &__price {
-    color: $orange;
+    color: $main;
   }
   & .button--black {
     padding: 12px 0 14px;
